@@ -17,5 +17,12 @@
     "url": "https://github.com/Cyrus-11/ECO-agent-skill.git"
   },
   "license": "MIT",
-  "author": "ECO the 2x DEV"
+  "author": "ECO the 2x DEV",
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "npm run validate && node --test scripts/validate.test.mjs"
+  },
+  "devDependencies": {
+    "yaml": "2.9.1"
+  }
 }

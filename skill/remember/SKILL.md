@@ -1,6 +1,7 @@
 ---
 name: remember
 description: Save a concise project handoff to memory.md or restore saved context for a later session. Use for session handoffs, resuming work, and retaining decisions or unresolved tasks across conversations.
+allowed-tools: Read Grep Glob Write Edit Bash(git:*)
 ---
 
 # Remember

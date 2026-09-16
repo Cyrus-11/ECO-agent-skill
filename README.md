@@ -111,7 +111,7 @@ Built by [ECO the 2x DEV](https://github.com/Cyrus-11).
 
 Found a bug or want to improve a skill? Open an issue or PR. Skills are just markdown — contributions are welcome from anyone.
 
-Use the [behavioral evaluation scenarios](evaluations/scenarios.md) to assess changes against realistic requests. Passing a format check does not prove the skill behaves correctly in every agent.
+Run `npm test` to validate skill structure before submitting, then work through [CONTRIBUTING.md](CONTRIBUTING.md) for behavioral checks. Passing a format check does not prove the skill behaves correctly in every agent.
 
 ---
 

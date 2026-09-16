@@ -15,6 +15,8 @@ Review the requested change against its requirements and actual project conventi
 - Inspect changed code and the callers, dependencies, or tests needed to understand its effects. State coverage limits.
 - Distinguish new regressions from pre-existing issues; include pre-existing problems only when they materially affect the requested change.
 
+For APIs, database changes, workers, or service integrations, consult [backend review](references/backend.md). Report only checks and risks relevant to the reviewed scope.
+
 ## Review in three layers
 
 ### 1. Plan alignment

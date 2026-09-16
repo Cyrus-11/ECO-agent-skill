@@ -1,6 +1,7 @@
 ---
 name: imprint
 description: Capture reusable UI patterns from components into ui-registry.md or audit an existing interface for inconsistencies. Use when documenting design conventions, updating a UI registry, or checking visual consistency.
+allowed-tools: Read Grep Glob Write Edit
 ---
 
 # Imprint

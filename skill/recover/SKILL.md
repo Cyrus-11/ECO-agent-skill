@@ -20,6 +20,8 @@ Ask only for missing information you cannot obtain. Keep credentials and private
 
 Separate observations from hypotheses. If evidence is insufficient, identify the next discriminating check instead of asserting a root cause.
 
+For API, database, queue, or integration failures, consult [backend diagnosis](references/backend.md) before retrying operations with side effects.
+
 ## Choose a recovery mode
 
 | Mode | Evidence | Response |

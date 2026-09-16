@@ -15,6 +15,8 @@ Think alongside the developer. Produce a plan that makes the intended result, im
 - Treat saved plans and memory as background; compare them with the current request and code.
 - If project files or tools are unavailable, state what you could not inspect and make the plan conditional on that information.
 
+For APIs, persistent data, jobs, or service integrations, read [backend planning](references/backend.md) and apply only the sections relevant to the change.
+
 ## Resolve the decisions that matter
 
 Clarify a term only when its ambiguity changes the implementation. Do not invent a quota of terms or questions.
