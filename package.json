@@ -1,0 +1,21 @@
+{
+  "name": "eco-agent-skill",
+  "version": "1.0.0",
+  "description": "Agent skills for architectural planning, session memory, code review, recovery, and UI consistency.",
+  "keywords": [
+    "claude-code",
+    "cursor",
+    "ai-coding",
+    "skills",
+    "agent-skills",
+    "developer-tools",
+    "eco-skills"
+  ],
+  "homepage": "https://github.com/Cyrus-11/ECO-agent-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cyrus-11/ECO-agent-skill.git"
+  },
+  "license": "MIT",
+  "author": "ECO the 2x DEV"
+}
