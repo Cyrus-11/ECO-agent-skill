@@ -12,7 +12,21 @@ function localLinks(text) {
     .map(match => match[1]).filter(link => !/^(https?:|mailto:|#)/i.test(link));
 }
 
+function validateSkillLinks(file, text, folder) {
+  const linked = new Set();
+  for (const link of localLinks(text)) {
+    const target = path.resolve(path.dirname(file), decodeURIComponent(link.split('#')[0]));
+    const relative = path.relative(folder, target);
+    assert.ok(relative && relative !== '..' && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative),
+      `${file}: skill link escapes its installed folder: ${link}`);
+    assert.ok(fs.existsSync(target) && fs.statSync(target).isFile(), `${file}: broken reference ${link}`);
+    linked.add(target);
+  }
+  return linked;
+}
+
 export function validateSkill(folder) {
+  folder = path.resolve(folder);
   const file = path.join(folder, 'SKILL.md');
   assert.ok(fs.existsSync(file), `${folder}: missing SKILL.md`);
   const text = fs.readFileSync(file, 'utf8').replaceAll('\r\n', '\n');
@@ -36,19 +50,16 @@ export function validateSkill(folder) {
     assert.ok(typeof allowed === 'string' && allowed.trim().length > 0 && allowed.length <= 500,
       `${file}: allowed-tools must be a non-empty space-separated string`);
   }
-  const linked = new Set(localLinks(text).map(link => path.resolve(folder, decodeURIComponent(link.split('#')[0]))));
-  for (const link of localLinks(text)) {
-    const target = path.resolve(folder, decodeURIComponent(link.split('#')[0]));
-    const relative = path.relative(folder, target);
-    assert.ok(relative && !relative.startsWith('..') && !path.isAbsolute(relative), `${file}: skill link escapes its installed folder: ${link}`);
-    assert.ok(fs.statSync(target).isFile(), `${file}: broken reference ${link}`);
-  }
+  const linked = validateSkillLinks(file, text, folder);
   const referencesDir = path.join(folder, 'references');
   if (fs.existsSync(referencesDir)) {
     const walk = dir => fs.readdirSync(dir, { withFileTypes: true }).flatMap(entry =>
       entry.isDirectory() ? walk(path.join(dir, entry.name)) : [path.join(dir, entry.name)]);
     for (const refFile of walk(referencesDir)) {
       assert.ok(linked.has(refFile), `${file}: reference not linked from SKILL.md: ${path.relative(folder, refFile)}`);
+      if (path.extname(refFile).toLowerCase() === '.md') {
+        validateSkillLinks(refFile, fs.readFileSync(refFile, 'utf8'), folder);
+      }
     }
   }
   return metadata;

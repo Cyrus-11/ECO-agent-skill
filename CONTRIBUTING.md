@@ -12,6 +12,8 @@ npm test
 
 This checks each `SKILL.md` for valid frontmatter, a matching `name`, a non-empty description, linked-and-resolvable references, no orphaned reference files, and a well-formed `allowed-tools` value when present. It does not prove the skill behaves correctly in a real agent.
 
+Local inline Markdown links in `SKILL.md` and Markdown guides under `references/` must resolve to files within the same skill folder. Guide links resolve relative to the guide itself, including in nested folders. For example, `references/backend.md` can link back to `../SKILL.md`, but cannot depend on a sibling skill that may not be installed. Every bundled reference file must still be linked directly from `SKILL.md` so agents can discover it. External URLs and same-page anchors are skipped; heading targets are not checked.
+
 ## 2. Behavioral checks
 
 Passing structure is necessary but not sufficient. Run the relevant scenarios below in a disposable project with your target agent. Use local fixtures and dummy credentials only — no live deployments, remote writes, or production data. Where it helps, run the same request with and without the skill to see its effect.

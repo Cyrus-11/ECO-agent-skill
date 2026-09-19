@@ -46,6 +46,41 @@ test('rejects reference files that are never linked from SKILL.md', t => {
   fs.writeFileSync(path.join(folder, 'references/orphan.md'), '# Orphan\n');
   assert.throws(() => validateSkill(folder));
 });
+
+function referenceFixture(t, body) {
+  const folder = fixture(t, valid + '\nRead [details](references/nested/details.md).\n');
+  fs.mkdirSync(path.join(folder, 'references/nested'), { recursive: true });
+  fs.writeFileSync(path.join(folder, 'references/nested/details.md'), body);
+  return folder;
+}
+
+test('rejects broken links inside nested reference guides with source context', t => {
+  const folder = referenceFixture(t, '[Missing](missing.md)\n');
+  assert.throws(() => validateSkill(folder), /details\.md: broken reference missing\.md/);
+});
+
+test('resolves reference guide links relative to the guide, within the skill', t => {
+  const folder = referenceFixture(t, '[Instructions](../../SKILL.md#instructions)\n[Asset](../../assets/example%20data.json)\n');
+  fs.mkdirSync(path.join(folder, 'assets'));
+  fs.writeFileSync(path.join(folder, 'assets/example data.json'), '{}\n');
+  assert.equal(validateSkill(folder).name, 'example');
+});
+
+test('rejects reference guide links outside the installed skill', t => {
+  const folder = referenceFixture(t, '[Outside](../../../outside.md)\n');
+  fs.writeFileSync(path.join(folder, '../outside.md'), '# Outside\n');
+  assert.throws(() => validateSkill(folder), /details\.md: skill link escapes its installed folder/);
+});
+
+test('rejects links to directories inside reference guides', t => {
+  const folder = referenceFixture(t, '[Directory](..)\n');
+  assert.throws(() => validateSkill(folder), /details\.md: broken reference/);
+});
+
+test('ignores web, email, and same-page links in reference guides', t => {
+  const folder = referenceFixture(t, '[Web](https://example.com)\n[Email](mailto:example@example.com)\n[Section](#details)\n');
+  assert.equal(validateSkill(folder).name, 'example');
+});
 test('accepts a non-empty space-separated allowed-tools string', t => {
   const text = valid.replace('description: Review a local example when requested.',
     'description: Review a local example when requested.\nallowed-tools: Read Grep Glob');
