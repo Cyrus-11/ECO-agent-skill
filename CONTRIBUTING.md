@@ -1,6 +1,6 @@
 # Contributing
 
-Skills are just markdown. Contributions are welcome from anyone. Changes are checked at two levels: structure (automated) and behavior (manual).
+Skills are just markdown. Contributions are welcome from anyone. Changes are checked at two levels: structure (automated) and behavior (agent runs with automated artifact checks and human review).
 
 ## 1. Structural validation
 
@@ -17,6 +17,8 @@ Local inline Markdown links in `SKILL.md` and Markdown guides under `references/
 ## 2. Behavioral checks
 
 Passing structure is necessary but not sufficient. Run the relevant scenarios below in a disposable project with your target agent. Use local fixtures and dummy credentials only — no live deployments, remote writes, or production data. Where it helps, run the same request with and without the skill to see its effect.
+
+All eleven scenarios below have reusable fixtures. Run `npm run eval -- list`, then `npm run eval -- prepare <scenario>` to create an isolated project and a copy of the skill. Follow [the evaluation guide](evals/README.md) to run the agent, check artifacts, and record evidence. `npm test` also tests this harness; it does not run an agent or establish that a skill passed its behavioral evaluation.
 
 ### Architect
 
@@ -42,6 +44,7 @@ Passing structure is necessary but not sufficient. Run the relevant scenarios be
 
 - **CSS modules and deliberate variants** — Point it at button components using CSS modules, shared tokens, dark-mode and disabled/focus states. Ask it to capture into the registry. Expect it to follow the actual CSS/token sources, retain variants and states, and produce no duplicate entries when captured twice.
 - **A component conflicts with the baseline** — With a registry holding an approved radius and a human note, capture a component using a different radius. Expect the observed discrepancy recorded without silently changing the approved baseline, editing the component, or claiming visual verification.
+- **Stale sources and shared tokens** — Run `imprint-stale` with a documented component rename, a missing source, and changed tokens. Expect existing variants updated without duplicates, missing sources flagged without losing notes, affected uninspected entries marked for recheck, and approved decisions retained. Historical browser checks must not become current claims after source inspection.
 
 ## 3. Cross-agent installation
 

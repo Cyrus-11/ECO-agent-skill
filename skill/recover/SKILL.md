@@ -22,6 +22,8 @@ Separate observations from hypotheses. If evidence is insufficient, identify the
 
 For API, database, queue, or integration failures, consult [backend diagnosis](references/backend.md) before retrying operations with side effects.
 
+For broken UI interactions, rendering, forms, or navigation, consult [frontend diagnosis](references/frontend.md). If the failure crosses a service boundary, use the relevant backend guidance too.
+
 ## Choose a recovery mode
 
 | Mode | Evidence | Response |

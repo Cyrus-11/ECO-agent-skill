@@ -20,7 +20,8 @@
   "author": "ECO the 2x DEV",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "npm run validate && node --test scripts/validate.test.mjs"
+    "test": "npm run validate && node --test scripts/validate.test.mjs scripts/evaluate.test.mjs",
+    "eval": "node scripts/evaluate.mjs"
   },
   "devDependencies": {
     "yaml": "2.9.1"

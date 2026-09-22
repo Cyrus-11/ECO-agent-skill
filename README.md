@@ -33,9 +33,9 @@ For a local checkout, use `npx skills@latest add . --list` to check discovery.
 
 ### `/architect`
 
-**Use before building anything.**
+**Use before substantial changes or decisions with meaningful tradeoffs.**
 
-Think through what you are about to build like a senior engineer before writing any code. Resolves meaningful uncertainties and produces a scoped plan with acceptance criteria and verification steps. Planning-only requests stop at the plan; requests to plan and build continue within your authorization.
+Resolve meaningful uncertainties and produce a scoped plan with acceptance criteria and verification steps. Routine, clearly specified edits can proceed directly. Planning-only requests stop at the plan; requests to plan and build continue within your authorization. Frontend and backend guides support the parts of the change that need them.
 
 This is not a grilling session. It is a thinking session — collaborative, not adversarial.
 
@@ -43,7 +43,7 @@ This is not a grilling session. It is a thinking session — collaborative, not 
 
 ### `/remember`
 
-**Use at the end and start of every session.**
+**Use when handing off work or resuming a task with saved context.**
 
 Session context doesn't always carry over. This skill saves useful project context to a file that can be read in a later session.
 
@@ -56,7 +56,7 @@ Memory must be saved and loaded explicitly, or through your existing agent instr
 
 ### `/review`
 
-**Use after building any feature.**
+**Use when a change needs a structured correctness or regression review.**
 
 Review in three layers: plan alignment, system integrity, and release risks. Findings include severity, location, impact, and evidence, along with checks performed and verification gaps. Review-only requests leave product code unchanged; explicitly requested fixes can follow the review.
 
@@ -66,7 +66,7 @@ Working and correct are not the same thing.
 
 ### `/recover`
 
-**Use when something goes wrong.**
+**Use for failures that need diagnosis or debugging that has stalled.**
 
 Not every problem is a bug. Not every bug needs debugging. This skill diagnoses which type of failure you are dealing with before deciding how to respond:
 
@@ -78,24 +78,28 @@ Not every problem is a bug. Not every bug needs debugging. This skill diagnoses 
 
 ### `/imprint`
 
-**Use after building any UI component.**
+**Use when adding or changing reusable UI patterns, or investigating visual drift.**
 
 Extract reusable visual patterns into ui-registry.md, including theme variants, responsive behavior, and interactive states. Works with the project's styling approach and separates observed patterns from approved design rules. Later UI work can consult the registry for consistency.
 
+Refresh existing entries after component moves or shared-token changes. Missing sources are flagged, while approved decisions and human notes are preserved. One-off UI edits do not always need a registry entry.
+
 - `/imprint` — capture from recently built component
 - `/imprint [file]` — capture from specific file
-- `/imprint audit` — scan entire codebase, find conflicts, establish baseline
+- `/imprint audit` — inspect the requested UI scope, find conflicts, propose a baseline
 
 ---
 
 ## The Engineering Loop
 
+Choose the skills that fit the task; this is a possible workflow, not a required sequence for every edit.
+
 ```text
 /architect  →  Build  →  /review  →  Ship
                  ↓
-/imprint  (after every UI component)
-/remember  (end and start of every session)
-/recover   (when something breaks)
+/imprint  (when reusable UI patterns change)
+/remember  (when handing off or resuming work)
+/recover   (when a failure needs investigation)
 ```
 
 ---
@@ -112,6 +116,8 @@ Built by [ECO the 2x DEV](https://github.com/Cyrus-11).
 Found a bug or want to improve a skill? Open an issue or PR. Skills are just markdown — contributions are welcome from anyone.
 
 Run `npm test` to validate skill structure before submitting, then work through [CONTRIBUTING.md](CONTRIBUTING.md) for behavioral checks. Passing a format check does not prove the skill behaves correctly in every agent.
+
+Use `npm run eval -- list` to explore eleven reproducible behavior scenarios. The [evaluation guide](evals/README.md) explains how to prepare disposable projects, run your target agent, and check the results.
 
 ---
 

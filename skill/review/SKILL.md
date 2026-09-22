@@ -17,6 +17,8 @@ Review the requested change against its requirements and actual project conventi
 
 For APIs, database changes, workers, or service integrations, consult [backend review](references/backend.md). Report only checks and risks relevant to the reviewed scope.
 
+For changes to components, forms, navigation, or styling, consult [frontend review](references/frontend.md). Use both guides when the reviewed flow spans UI and services.
+
 ## Review in three layers
 
 ### 1. Plan alignment

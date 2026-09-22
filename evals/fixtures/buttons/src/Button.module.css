@@ -1,0 +1,13 @@
+@import './tokens.css';
+
+.button {
+  border: 1px solid transparent;
+  border-radius: var(--control-radius);
+  padding: 0.5rem 1rem;
+  font: inherit;
+}
+.primary { background: var(--action-bg); color: var(--action-fg); }
+.destructive { background: var(--danger-bg); color: var(--action-fg); }
+.button:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.button:disabled { opacity: 0.5; cursor: not-allowed; }
+@media (max-width: 480px) { .button { width: 100%; } }

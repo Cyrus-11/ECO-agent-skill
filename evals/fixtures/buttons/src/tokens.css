@@ -1,0 +1,13 @@
+:root {
+  --control-radius: 8px;
+  --action-bg: #174ea6;
+  --action-fg: #ffffff;
+  --danger-bg: #b3261e;
+  --focus-ring: #174ea6;
+}
+[data-theme='dark'] {
+  --action-bg: #a8c7fa;
+  --action-fg: #101010;
+  --danger-bg: #ffb4ab;
+  --focus-ring: #d3e3fd;
+}

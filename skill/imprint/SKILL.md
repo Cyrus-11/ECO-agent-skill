@@ -50,6 +50,7 @@ For each entry, include:
 Source: [relative path and symbol]
 Updated: [actual available date]
 Status: [observed / approved baseline / unresolved conflict]
+Source state: [current / needs recheck / missing / retired; reason when relevant]
 
 | Property or state | Token, class, or value | Source / context |
 | --- | --- | --- |
@@ -64,6 +65,16 @@ Preserve existing decisions and human notes. Do not overwrite an approved baseli
 Use "approved" only when supported by an existing project standard or an explicit developer decision. A frequent pattern is a candidate baseline, not proof that it is correct.
 
 Confirm which entries were added or updated and any unresolved conflicts. Capturing patterns does not authorize changing component code.
+
+## Reconcile stale entries
+
+Check source paths, exported symbols, and relevant token definitions before updating or reusing an entry. A recent registry timestamp alone does not prove that its sources are current. Keep source freshness separate from design approval: an approved decision can outlive its original component.
+
+- **Moved or renamed component:** establish continuity from the current source, imports, available diff/history, or a documented move. Update the existing entry's path and symbol, retaining variants, decisions, and human notes; note the former identity when useful. Similar names or styles alone are not proof of a rename. If identity remains ambiguous, mark it for recheck rather than merging unrelated entries.
+- **Missing source:** make a bounded search in the relevant project area for a move or replacement. Mark the source missing if it cannot be found. Use retired only when deletion or replacement is supported by evidence, and identify a known replacement. Preserve the entry and its decision history; do not silently remove it or treat its old observations as current implementation guidance.
+- **Changed shared token or primitive:** re-read the definition and affected conditions, including theme overrides, even if the component file is unchanged. Refresh inspected observations and record any conflict with an approved baseline without changing that decision. Identify other registry entries referencing the changed source; mark affected observations as needing recheck when they have not been inspected. A targeted capture need not become a full codebase audit.
+
+Advance an entry's verification date or claim only for the sources and states actually rechecked. Retain earlier rendering evidence as historical if relevant; source inspection does not renew it. Report entries updated, missing or retired sources, and remaining rechecks with their reasons. Leave unrelated notes and entries intact.
 
 ## Audit
 
@@ -82,4 +93,4 @@ An audit reports and records patterns. If the developer also requested UI fixes,
 
 Consult relevant registry entries during subsequent UI work when this skill is active. Other sessions or agents must explicitly load the registry or follow existing project instructions that reference it; the file does not enforce itself.
 
-Do not silently edit agent configuration to make the registry load automatically. Keep source paths and observations current, and recheck stale entries before using them as a baseline.
+Do not silently edit agent configuration to make the registry load automatically. Reconcile stale entries before using their observations as current evidence; a missing source does not by itself revoke a documented design decision.

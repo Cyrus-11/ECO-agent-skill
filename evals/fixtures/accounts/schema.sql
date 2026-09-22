@@ -1,0 +1,9 @@
+CREATE TABLE accounts (
+  id INTEGER PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE
+);
+CREATE TABLE documents (
+  id INTEGER PRIMARY KEY,
+  account_id INTEGER NOT NULL REFERENCES accounts(id),
+  body TEXT NOT NULL
+);

@@ -17,6 +17,8 @@ Think alongside the developer. Produce a plan that makes the intended result, im
 
 For APIs, persistent data, jobs, or service integrations, read [backend planning](references/backend.md) and apply only the sections relevant to the change.
 
+For changes to UI behavior, forms, navigation, or layout, read [frontend planning](references/frontend.md). For changes spanning UI and services, use the relevant parts of both guides.
+
 ## Resolve the decisions that matter
 
 Clarify a term only when its ambiguity changes the implementation. Do not invent a quota of terms or questions.
