@@ -13,6 +13,7 @@ Review the requested change against its requirements and actual project conventi
 - Read the request, available implementation plan, and applicable project instructions. A separate architect plan is optional.
 - If no plan exists, use the stated requirements and code context. Ask only when missing intent prevents a meaningful correctness judgment.
 - Inspect changed code and the callers, dependencies, or tests needed to understand its effects. State coverage limits.
+- Check dependency, generated-file, configuration, and migration changes when they are part of the diff; do not limit review to application source files.
 - Distinguish new regressions from pre-existing issues; include pre-existing problems only when they materially affect the requested change.
 
 For APIs, database changes, workers, or service integrations, consult [backend review](references/backend.md). Report only checks and risks relevant to the reviewed scope.
@@ -37,6 +38,8 @@ For UI changes, distinguish intentional variants from accidental drift. Use an e
 
 Check applicable failure paths: invalid or missing input, empty/loading/error states, permissions and ownership, data integrity, concurrency, compatibility, accessibility, and performance concerns supported by the code.
 
+Check security and privacy in proportion to the change: trust boundaries, secret handling, sensitive logs, injection paths, and authorization belong in scope when the affected code can expose them. Do not turn an ordinary review into an unrelated security audit.
+
 Run relevant existing checks when tools and scope permit. Inspect test coverage of changed behavior. Record the command or manual check and its outcome. Distinguish failures caused by the change from missing dependencies or environment failures.
 
 Do not claim to have observed browser behavior, logs, or runtime results from reading source alone. An unavailable environment is a verification gap, not proof that the code is defective. Avoid tests that mutate live services without authorization.
@@ -50,6 +53,8 @@ Lead with the most consequential findings. For each, provide:
 - **Trigger:** conditions that expose the problem
 - **Impact and evidence:** what fails and how you know
 - **Suggested direction:** a concise fix or next diagnostic check when useful
+
+Keep one root cause in one finding. If the same defect affects several locations, group them and list the relevant locations; if similar symptoms have different causes or fixes, report them separately.
 
 Use impact to set severity:
 

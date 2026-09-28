@@ -29,6 +29,7 @@ Capture reusable patterns where present:
 - Background, foreground, border, radius, and shadow.
 - Typography hierarchy and component spacing.
 - Interactive states, including keyboard focus, disabled, error, selected, and loading.
+- Semantic and accessibility conventions that are part of the reusable component contract, such as native element choice, labeling, error association, and focus behavior.
 - Theme and responsive variants that change the pattern.
 - Shared dimensions, layout, or motion when they are established conventions, such as control heights or reduced-motion behavior.
 
@@ -59,6 +60,8 @@ Source state: [current / needs recheck / missing / retired; reason when relevant
 Notes: [intentional variations, unresolved values, supporting decisions]
 Verification: [source inspection; rendering checks only if performed]
 ```
+
+Use the table for visual and state properties. Put behavioral or semantic contracts in Notes when reducing them to a single value would be misleading. Do not infer an accessible interaction from ARIA attributes or styling alone.
 
 Preserve existing decisions and human notes. Do not overwrite an approved baseline because the newest component differs from it. Record the conflicting observation and explain the discrepancy.
 
